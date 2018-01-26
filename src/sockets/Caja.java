@@ -1,10 +1,9 @@
 package sockets;
 
-import java.io.BufferedReader;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,11 +22,12 @@ public class Caja {
 
     private Socket socketCajero;
     private static final int PUERTO_SINCRONO = 5555;
+    private static final int PUERTO_SINCRONO_1 = 5556;
     private static final String ip = "localhost";
 
 //    Creamos objetos de la clase Cliente.
-    Cliente cliente_1 = new Cliente("Cliente 1");
-    Cliente cliente_2 = new Cliente("Cliente 2");
+    Cliente cliente_1 = new Cliente("Cliente 1", PUERTO_SINCRONO);
+    Cliente cliente_2 = new Cliente("Cliente 2", PUERTO_SINCRONO_1);
     
     public void llenando(){
         
@@ -63,7 +63,7 @@ public class Caja {
                 DataOutputStream enviarOrden = new DataOutputStream(socketCajero.getOutputStream());
                 DataInputStream recibirConfirmacion = new DataInputStream(socketCajero.getInputStream());
 
-                enviarOrden.writeUTF("Cliente estableciendo conexión.");
+                enviarOrden.writeUTF(cliente_1.toString() + " estableciendo conexión.");
 
                 System.out.println("\033[32m" + recibirConfirmacion.readUTF());
 
@@ -79,16 +79,35 @@ public class Caja {
 
         private String nombreCliente;
         LlenarDeposito llenadoDeposito;
+        protected int socket;
 
-        public ExtendsLlenadoDeposito(String nombreCliente, LlenarDeposito llenadoDeposito) {
+        public ExtendsLlenadoDeposito(int socket) {
+            this.socket = socket;
+        }
+        
+        public ExtendsLlenadoDeposito(String nombreCliente, LlenarDeposito llenadoDeposito, int socket) {
             this.nombreCliente = nombreCliente;
             this.llenadoDeposito = llenadoDeposito;
+            this.socket = socket;
         }
 
         @Override
         public void run() {
             
-            llenadoDeposito.cliente_1(nombreCliente);
+            try {
+                socketCajero = new Socket(ip, PUERTO_SINCRONO_1);
+
+//            Creamos los flujos de entrada y salida de datos.
+                DataOutputStream enviarOrden = new DataOutputStream(socketCajero.getOutputStream());
+                DataInputStream recibirConfirmacion = new DataInputStream(socketCajero.getInputStream());
+
+                enviarOrden.writeUTF(cliente_2.toString() +" estableciendo conexión.");
+
+                System.out.println("\033[32m" + recibirConfirmacion.readUTF());
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             
             try {
                 Thread.sleep(1000);

@@ -1,3 +1,4 @@
+package sockets;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -6,7 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sockets.Cliente;
+import sockets.Caja.ExtendsLlenadoDeposito;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,18 +20,55 @@ import sockets.Cliente;
  */
 public class Surtidor {
 
+//    Atributo.
+    private int socket;
+    
     private Socket socketSurtidor;
     private ServerSocket servidorSurtidor;
     private static final int PUERTO_SINCRONO = 5555;
+    private static final int PUERTO_SINCRONO_1 = 5555;
     
+//    ExtendsLlenadoDeposito ce;
+
+    public Surtidor() {
+    }
+
+    public Surtidor(int socket) {
+        this.socket = socket;
+        
+    }
+
+    public int getSocket() {
+        Cliente cliente = new Cliente();
+        if (cliente.getSocket() == 5555){
+            return PUERTO_SINCRONO;
+        }else{
+            return PUERTO_SINCRONO_1;
+        }
+//        return socket;
+    }
+
+    public void setSocket(int socket) {
+        this.socket = socket;
+    }
+    
+    @Override
+    public String toString(){
+        return String.valueOf(getSocket());
+    }
 
     public void surtidor() {
 
-        try {
-            servidorSurtidor = new ServerSocket(PUERTO_SINCRONO);
-            Thread hilo = new Thread(new Runnable() {
-                @Override
-                public void run() {
+        
+            //        try {
+            try {
+            servidorSurtidor = new ServerSocket(socket);
+        } catch (IOException ex) {
+            Logger.getLogger(Surtidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//            Thread hilo = new Thread(new Runnable() {
+////                @Override
+//                public void run() {
                     while (true) {
                         try {
 //                            Pintamos de verde la salida por consola del surtidor.
@@ -47,15 +85,16 @@ public class Surtidor {
                             enviarOrden.writeUTF("Conexión establecida con el surtidor.");
                         } catch (IOException ex) {
                             Logger.getLogger(Surtidor.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        
+                           new ExtendsLlenadoDeposito(socket).start();
 
                     }
                 }
-            });
-            hilo.start();
-        } catch (IOException ex) {
-            Logger.getLogger(Surtidor.class.getName()).log(Level.SEVERE, null, ex);
-        }
+////            });
+////            hilo.start();
+////        } catch (IOException ex) {
+////            Logger.getLogger(Surtidor.class.getName()).log(Level.SEVERE, null, ex);
+////        }
 
     }
 

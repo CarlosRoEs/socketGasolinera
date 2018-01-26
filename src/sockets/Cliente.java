@@ -5,6 +5,8 @@
  */
 package sockets;
 
+import java.net.Socket;
+
 /**
  *
  * @author FOC
@@ -12,12 +14,14 @@ package sockets;
 public class Cliente {
     
     private String nombreCliente;
+    private int socket;
 
     public Cliente() {
     }
 
-    public Cliente(String nombreCliente) {
+    public Cliente(String nombreCliente, int socket) {
         this.nombreCliente = nombreCliente;
+        this.socket = socket;
     }
 
     public String getNombreCliente() {
@@ -27,10 +31,18 @@ public class Cliente {
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
-    
-    @Override
-    public String toString(){
+
+    public int getSocket() {
         
+        return socket;
+    }
+
+    public void setSocket(int socket) {
+        this.socket = socket;
+    }
+
+    @Override
+    public String toString(){ 
         return getNombreCliente();
     }
 }

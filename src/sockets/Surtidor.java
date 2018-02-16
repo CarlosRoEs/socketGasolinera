@@ -5,101 +5,141 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import sockets.Caja.ExtendsLlenadoDeposito;
+import org.apache.log4j.PropertyConfigurator;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
- * @author FOC
+ * @author Carlos Rodríguez Escudero
  */
 public class Surtidor {
-
-//    Atributo.
-    private int socket;
     
-    private Socket socketSurtidor;
-    private ServerSocket servidorSurtidor;
-    private static final int PUERTO_SINCRONO = 5555;
-    private static final int PUERTO_SINCRONO_1 = 5555;
-    
-//    ExtendsLlenadoDeposito ce;
+    private static org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(Surtidor.class);
 
-    public Surtidor() {
-    }
+    private ServerSocket servidorSurtidor = null;
+    private static int puerto = 5555;
+    private static int idSocket = 1;
 
-    public Surtidor(int socket) {
-        this.socket = socket;
-        
-    }
-
-    public int getSocket() {
-        Cliente cliente = new Cliente();
-        if (cliente.getSocket() == 5555){
-            return PUERTO_SINCRONO;
-        }else{
-            return PUERTO_SINCRONO_1;
-        }
-//        return socket;
-    }
-
-    public void setSocket(int socket) {
-        this.socket = socket;
-    }
-    
-    @Override
-    public String toString(){
-        return String.valueOf(getSocket());
-    }
-
+    /**
+     * Realiza la conexión del servidor.
+     */
     public void surtidor() {
-
         
-            //        try {
-            try {
-            servidorSurtidor = new ServerSocket(socket);
+        log.info("El surtidor usa el puerto 5555.");
+        log.info("Iniciando servidor...");
+        try {
+            servidorSurtidor = new ServerSocket(puerto);
+            
         } catch (IOException ex) {
-            Logger.getLogger(Surtidor.class.getName()).log(Level.SEVERE, null, ex);
+            log.error("El surtidor no ha podido realizar la conexión.", ex);
         }
-//            Thread hilo = new Thread(new Runnable() {
-////                @Override
-//                public void run() {
-                    while (true) {
-                        try {
-//                            Pintamos de verde la salida por consola del surtidor.
-                            System.out.println("\033[32mEsperando cliente...");
-                            socketSurtidor = servidorSurtidor.accept();
-
-//            Creamos los flujos de entrada y salida de datos.
-                            DataOutputStream enviarOrden = new DataOutputStream(socketSurtidor.getOutputStream());
-                            DataInputStream recibirConfirmacion = new DataInputStream(socketSurtidor.getInputStream());
-
-                            String orden = recibirConfirmacion.readUTF();
-                            System.out.println("\033[34m" +  orden);
-
-                            enviarOrden.writeUTF("Conexión establecida con el surtidor.");
-                        } catch (IOException ex) {
-                            Logger.getLogger(Surtidor.class.getName()).log(Level.SEVERE, null, ex);
-                        
-                           new ExtendsLlenadoDeposito(socket).start();
-
-                    }
+        
+        while (true) {
+            
+            log.info("Esperando cliente...");
+            Socket socketSurtidor;
+            
+            try {
+                socketSurtidor = servidorSurtidor.accept();
+                
+//                Creamos los hilos para la entrada de los clientes.
+                SurtidorHilo nuevoCliente = new SurtidorHilo(socketSurtidor);
+                nuevoCliente.start();
+                
+                log.info("Nueva conexión entrante id: " + idSocket + "(" + puerto + ")");
+                
+                try {
+                    nuevoCliente.join();
+                } catch (InterruptedException ex) {
+                    log.error("Hilo interrumpido.", ex);
                 }
-////            });
-////            hilo.start();
-////        } catch (IOException ex) {
-////            Logger.getLogger(Surtidor.class.getName()).log(Level.SEVERE, null, ex);
-////        }
-
+                
+            } catch (IOException ex) {
+                log.error("Error en el puerto de entrada.", ex);
+            }
+        }
     }
+    
+    static class SurtidorHilo extends Thread {
+        
+        private Socket socketSurtidor;
+        
+        public SurtidorHilo(Socket socketSurtidor) {
+            this.socketSurtidor = socketSurtidor;
+        }
+        
+        @Override
+        public void run() {
+            
+            int importePagado = 0;
+            String mensajeEntrante = null;
+            String mensajeSaliente = null;
+            
+            try {
+                
+                DataOutputStream enviar;
+                DataInputStream recibir;
+                enviar = new DataOutputStream(socketSurtidor.getOutputStream());
+                recibir = new DataInputStream(socketSurtidor.getInputStream());
+//                Estableciendo conexión con el sutidor.
+                mensajeEntrante = recibir.readUTF();
+                log.info("\033[34m" + mensajeEntrante);
+                
+                mensajeSaliente = "Conexión establecida con el surtidor.\nSurtidor Abierto.";
+                enviar.writeUTF(mensajeSaliente);
+                
+                importePagado = recibir.readInt();
+                log.debug("El importe de la variable es " + importePagado);
+                log.info("\033[34m" + importePagado);
+                
+                mensajeSaliente = "Manguera descolgada";
+                enviar.writeUTF(mensajeSaliente);
+                
+                mensajeSaliente = "Gatillo presionado";
+                enviar.writeUTF(mensajeSaliente);
+                
+                if (importePagado > 0) {
+                    for (int i = 1; i <= importePagado; i++) {
+                        log.info("Llenando deposito " + i);
+                    }                    
+                } else {
+                    log.info("Importe introducido no valido.");
+                    
+                }
+                
+                mensajeSaliente = "Llenando deposito...";
+                enviar.writeUTF(mensajeSaliente);
+                
+                mensajeSaliente = "Gatillo liberado";
+                enviar.writeUTF(mensajeSaliente);
+                
+                mensajeSaliente = "Manguera colgada.";
+                enviar.writeUTF(mensajeSaliente);
 
+//                ¿Terminado.?
+                mensajeEntrante = recibir.readUTF();
+                log.info("\033[34m" + mensajeEntrante);
+                
+                mensajeSaliente = "Terminado. OK";
+                enviar.writeUTF(mensajeSaliente);
+                
+                log.info("Cerrando surtidor...");
+
+//                Cerrando los flujos.
+                recibir.close();
+                enviar.close();
+                
+            } catch (IOException ex) {
+                log.error("Error en el flujo de datos.", ex);
+            }
+            
+        }
+        
+    }
+    
     public static void main(String[] args) {
-
+        
+        PropertyConfigurator.configure("log4j.properties");
+        
         Surtidor surtidor = new Surtidor();
         surtidor.surtidor();
     }

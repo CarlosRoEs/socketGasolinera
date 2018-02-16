@@ -1,0 +1,141 @@
+[main] INFO  sockets.Surtidor - El surtidor usa el puerto 5555.
+[main] INFO  sockets.Surtidor - Iniciando servidor...
+[main] INFO  sockets.Surtidor - Esperando cliente...
+[main] DEBUG sockets.Caja - Dato almacenado en la variable cliente:cliente_1
+[main] INFO  sockets.Surtidor - Nueva conexión entrante id: 1(5555)
+[Thread-0] INFO  sockets.Surtidor - [34m[34mEstableciendo conexión con el sutidor.
+[main] INFO  sockets.Caja - Conexión establecida con el surtidor.
+Surtidor Abierto.
+[main] INFO  sockets.Caja - [34m¿Cuanto desea pagar?
+[Thread-0] DEBUG sockets.Surtidor - El importe de la variable es 5
+[Thread-0] INFO  sockets.Surtidor - [34m5
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 1
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 2
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 3
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 4
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 5
+[main] INFO  sockets.Caja - Manguera descolgada
+[main] INFO  sockets.Caja - Gatillo presionado
+[main] INFO  sockets.Caja - Llenando deposito...
+[main] INFO  sockets.Caja - Gatillo liberado
+[main] INFO  sockets.Caja - Manguera colgada.
+[Thread-0] INFO  sockets.Surtidor - [34m[34m¿Terminado.?
+[Thread-0] INFO  sockets.Surtidor - Cerrando surtidor...
+[main] INFO  sockets.Caja - Terminado. OK
+[main] INFO  sockets.Caja - [34mSurtidor cerrado.
+[main] INFO  sockets.Surtidor - Esperando cliente...
+[main] INFO  sockets.Surtidor - Nueva conexión entrante id: 1(5555)
+[Thread-1] INFO  sockets.Surtidor - [34m[34mEstableciendo conexión con el sutidor.
+[Thread-0] INFO  sockets.Caja - Conexión establecida con el surtidor.
+Surtidor Abierto.
+[Thread-0] INFO  sockets.Caja - [34m¿Cuanto desea pagar?
+[Thread-1] DEBUG sockets.Surtidor - El importe de la variable es 3
+[Thread-1] INFO  sockets.Surtidor - [34m3
+[Thread-1] INFO  sockets.Surtidor - Llenando deposito 1
+[Thread-1] INFO  sockets.Surtidor - Llenando deposito 2
+[Thread-1] INFO  sockets.Surtidor - Llenando deposito 3
+[Thread-0] INFO  sockets.Caja - Manguera descolgada
+[Thread-0] INFO  sockets.Caja - Gatillo presionado
+[Thread-0] INFO  sockets.Caja - Llenando deposito...
+[Thread-0] INFO  sockets.Caja - Gatillo liberado
+[Thread-0] INFO  sockets.Caja - Manguera colgada.
+[Thread-1] INFO  sockets.Surtidor - [34m[34m¿Terminado.?
+[Thread-1] INFO  sockets.Surtidor - Cerrando surtidor...
+[Thread-0] INFO  sockets.Caja - Terminado. OK
+[Thread-0] INFO  sockets.Caja - [34mSurtidor cerrado.
+[main] INFO  sockets.Surtidor - Esperando cliente...
+[main] INFO  sockets.Caja - Cliente 2
+[main] INFO  sockets.Surtidor - El surtidor usa el puerto 5555.
+[main] INFO  sockets.Surtidor - Iniciando servidor...
+[main] INFO  sockets.Surtidor - Esperando cliente...
+[main] DEBUG sockets.Caja - Dato almacenado en la variable cliente:cliente_2
+[main] INFO  sockets.Surtidor - Nueva conexión entrante id: 1(5555)
+[Thread-0] INFO  sockets.Surtidor - [34m[34mEstableciendo conexión con el sutidor.
+[Thread-0] INFO  sockets.Caja - Conexión establecida con el surtidor.
+Surtidor Abierto.
+[Thread-0] INFO  sockets.Caja - [34m¿Cuanto desea pagar?
+[Thread-0] DEBUG sockets.Surtidor - El importe de la variable es 3
+[Thread-0] INFO  sockets.Surtidor - [34m3
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 1
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 2
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 3
+[Thread-0] INFO  sockets.Caja - Manguera descolgada
+[Thread-0] INFO  sockets.Caja - Gatillo presionado
+[Thread-0] INFO  sockets.Caja - Llenando deposito...
+[Thread-0] INFO  sockets.Caja - Gatillo liberado
+[Thread-0] INFO  sockets.Caja - Manguera colgada.
+[Thread-0] INFO  sockets.Surtidor - [34m[34m¿Terminado.?
+[Thread-0] INFO  sockets.Surtidor - Cerrando surtidor...
+[Thread-0] INFO  sockets.Caja - Terminado. OK
+[Thread-0] INFO  sockets.Caja - [34mSurtidor cerrado.
+[main] INFO  sockets.Surtidor - Esperando cliente...
+[main] INFO  sockets.Surtidor - Nueva conexión entrante id: 1(5555)
+[Thread-1] INFO  sockets.Surtidor - [34m[34mEstableciendo conexión con el sutidor.
+[main] INFO  sockets.Caja - Conexión establecida con el surtidor.
+Surtidor Abierto.
+[main] INFO  sockets.Caja - [34m¿Cuanto desea pagar?
+[Thread-1] DEBUG sockets.Surtidor - El importe de la variable es 3
+[Thread-1] INFO  sockets.Surtidor - [34m3
+[Thread-1] INFO  sockets.Surtidor - Llenando deposito 1
+[Thread-1] INFO  sockets.Surtidor - Llenando deposito 2
+[Thread-1] INFO  sockets.Surtidor - Llenando deposito 3
+[main] INFO  sockets.Caja - Manguera descolgada
+[main] INFO  sockets.Caja - Gatillo presionado
+[main] INFO  sockets.Caja - Llenando deposito...
+[main] INFO  sockets.Caja - Gatillo liberado
+[main] INFO  sockets.Caja - Manguera colgada.
+[Thread-1] INFO  sockets.Surtidor - [34m[34m¿Terminado.?
+[Thread-1] INFO  sockets.Surtidor - Cerrando surtidor...
+[main] INFO  sockets.Caja - Terminado. OK
+[main] INFO  sockets.Caja - [34mSurtidor cerrado.
+[main] INFO  sockets.Caja - Cliente 1
+[main] INFO  sockets.Surtidor - Esperando cliente...
+[main] INFO  sockets.Surtidor - El surtidor usa el puerto 5555.
+[main] INFO  sockets.Surtidor - Iniciando servidor...
+[main] INFO  sockets.Surtidor - Esperando cliente...
+[main] DEBUG sockets.Caja - Dato almacenado en la variable cliente:cero
+[main] INFO  sockets.Caja - [34mPor favor, debe seleccionar un cliente correcto.
+[main] INFO  sockets.Caja - [34mSeleccione cliente:
+[main] INFO  sockets.Surtidor - Nueva conexión entrante id: 1(5555)
+[Thread-0] INFO  sockets.Surtidor - [34m[34mEstableciendo conexión con el sutidor.
+[main] INFO  sockets.Caja - Conexión establecida con el surtidor.
+Surtidor Abierto.
+[main] INFO  sockets.Caja - [34m¿Cuanto desea pagar?
+[main] INFO  sockets.Caja - [34mPorfavor realice un pago para llenar el deposito.
+[main] INFO  sockets.Caja - [34m¿Cuanto desea pagar?
+[Thread-0] DEBUG sockets.Surtidor - El importe de la variable es 5
+[Thread-0] INFO  sockets.Surtidor - [34m5
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 1
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 2
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 3
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 4
+[Thread-0] INFO  sockets.Surtidor - Llenando deposito 5
+[main] INFO  sockets.Caja - Manguera descolgada
+[main] INFO  sockets.Caja - Gatillo presionado
+[main] INFO  sockets.Caja - Llenando deposito...
+[main] INFO  sockets.Caja - Gatillo liberado
+[main] INFO  sockets.Caja - Manguera colgada.
+[Thread-0] INFO  sockets.Surtidor - [34m[34m¿Terminado.?
+[Thread-0] INFO  sockets.Surtidor - Cerrando surtidor...
+[main] INFO  sockets.Caja - Terminado. OK
+[main] INFO  sockets.Caja - [34mSurtidor cerrado.
+[main] INFO  sockets.Surtidor - Esperando cliente...
+[main] INFO  sockets.Surtidor - Nueva conexión entrante id: 1(5555)
+[Thread-1] INFO  sockets.Surtidor - [34m[34mEstableciendo conexión con el sutidor.
+[Thread-0] INFO  sockets.Caja - Conexión establecida con el surtidor.
+Surtidor Abierto.
+[Thread-0] INFO  sockets.Caja - [34m¿Cuanto desea pagar?
+[Thread-1] DEBUG sockets.Surtidor - El importe de la variable es 1
+[Thread-1] INFO  sockets.Surtidor - [34m1
+[Thread-1] INFO  sockets.Surtidor - Llenando deposito 1
+[Thread-0] INFO  sockets.Caja - Manguera descolgada
+[Thread-0] INFO  sockets.Caja - Gatillo presionado
+[Thread-0] INFO  sockets.Caja - Llenando deposito...
+[Thread-0] INFO  sockets.Caja - Gatillo liberado
+[Thread-0] INFO  sockets.Caja - Manguera colgada.
+[Thread-1] INFO  sockets.Surtidor - [34m[34m¿Terminado.?
+[Thread-1] INFO  sockets.Surtidor - Cerrando surtidor...
+[Thread-0] INFO  sockets.Caja - Terminado. OK
+[Thread-0] INFO  sockets.Caja - [34mSurtidor cerrado.
+[main] INFO  sockets.Surtidor - Esperando cliente...
+[main] INFO  sockets.Caja - Cliente 2
